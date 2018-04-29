@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>班级信息</title>
+</head>
+<body>
+	<h1>班级信息列表</h1>
+	<ul>
+		<!--每次循环创建一个无序列表，有序为<ol>;href='#'表示点击页面会滚到首页-->
+		{%for grade in grades%}
+		<!--执行代码段-->
+		<li>
+			<a href="{{grade.id}}">{{grade.gname}}</a>
+		</li>
+		{%endfor%}
+		<li>
+			<a href={%url 'app:good'%}>测试反向代理</a>
+		</li>
+	</ul>
+</body>
+</html>
