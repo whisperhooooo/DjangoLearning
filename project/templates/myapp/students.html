@@ -28,5 +28,10 @@
 	<h1>{{str|upper}}</h1>
 	<h1>{{list1|join:"#"}}</h1>
 	<h1>{{txt|default:"No"}}</h1>
+	<form method="post" action="/sunck/savefile" enctype="multipart/form-data">
+	{%csrf_token%}
+	<input type="file" name="file"/>
+	<input type="submit" name="上传"/>
+	</form>
 </body>
 </html>

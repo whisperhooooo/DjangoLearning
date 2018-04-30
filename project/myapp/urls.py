@@ -5,7 +5,7 @@ urlpatterns = [
     url(r'^$', views.index),
 	url(r'^(\d+)/$', views.detail),
 	url(r'^grades/$', views.grades),
-	url(r'^students/', views.students),
+	url(r'^students/$', views.students),
 	url(r'^grades/(\d+)$', views.gradesStudents),
 	url(r'^addstudents/$', views.addstudents),
 	url(r'^addstudents2/$', views.addstudents2),
@@ -29,5 +29,8 @@ urlpatterns = [
 	url(r'^basebased$', views.basebased),
 	url(r'^postinfo$', views.postinfo),
 	url(r'^showinfo$', views.showinfo),
-	url(r'^verifycode$', views.verifycode)
+	url(r'^verifycode$', views.verifycode),
+	url(r'^savefile$', views.savefile),
+	url(r'^splitstudentpage/(\d+)$',views.splitstudentpage),
+	url(r'^celery$',views.celery)
 ]

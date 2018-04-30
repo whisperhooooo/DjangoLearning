@@ -37,7 +37,7 @@ def addstudents2(request):
 	return HttpResponse('it works,too')
 def studentspage(request,page):
 	n = int(page)
-	studentsList = Students.stuObj1.all()[(page-1)*5:page*5]
+	studentsList = Students.stuObj1.all()[(n-1)*5:n*5]
 	return render(request, 'myapp/students.html',{'students':studentsList})
 def studentssearch(request):
 	#studentsList = Students.stuObj1.filter(sname__contains='k')
@@ -196,4 +196,28 @@ def verifycode(request):
 	im.save(buf, 'png')
 	#将内存中的图片数据返回给客户端，MIME类型为图片png
 	return HttpResponse(buf.getvalue(), 'image/png')
-#def verifycodecheck(request):
+import os
+from django.conf import settings
+def savefile(request):
+	if request.method =="POST":
+		f = request.FILES["file"]
+		filePath = os.path.join(settings.MEDIA_ROOT,f.name)#文件路径拼接
+		with open(filePath,'wb') as fp:
+			for info in f.chunks():
+				fp.write(info)
+		return HttpResponse('Succeed!')
+	else:
+		return HttpResponse("Fail!")
+from django.core.paginator import Paginator
+def splitstudentpage(request, pageid):
+	allList = Students.stuObj1.all()
+	paginator = Paginator(allList,2)
+	page = paginator.page(pageid)
+	return render (request, 'myapp/splitstudentpage.html',{"students":page})
+import time
+def celery(request):
+	print('1')
+	time.sleep(5)
+	print('2')
+	return render (request, 'myapp/celery.html')
+	

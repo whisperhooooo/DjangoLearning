@@ -4,6 +4,9 @@ from django.contrib import admin
 # 这里主要操作涉及到的是superuser操作界面
 from .models import Grades, Students
 
+from .models import Text
+admin.site.register(Text)
+
 class StudentsInfo(admin.TabularInline):
 	model = Students
 	extra = 2

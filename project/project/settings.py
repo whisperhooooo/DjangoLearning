@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-	'myapp'#添加新的应用
+	'myapp',#添加新的应用
+	'tinymce',
+	'djcelery'
 ]
 
 MIDDLEWARE = [
@@ -48,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+	'middleware.myapp.mymiddle.MyMiddle'
 ]
 
 ROOT_URLCONF = 'project.urls'
@@ -133,3 +136,20 @@ STATICFILES_DIRS=[os.path.join(BASE_DIR,'static')
 # SESSION_REDIS_DB = 0,
 # SESSION_REDIS_PASSWORD = '',
 # SESSION_REDIS_PREFIX = 'session'
+
+#上传文件目录
+MEDIA_ROOT = os.path.join(BASE_DIR, r'static\upfile')
+
+#富文本
+TINYMCE_DEFAULT_CONFIG={
+	'theme':'advanced',
+	'width':600,
+	'height':400
+}
+
+
+#celery配置
+import djcelery
+djcelery.setup_loader()
+BROKER_URL='redis://@127.0.0.1:6379/0'
+CELERY_IMPORTS=('myapp.task')
