@@ -1,0 +1,12 @@
+
+.int_css{
+	border-width:2px;
+	border-style:solid;
+	text-align:center;
+	color:green;
+}
+
+#h1_css{
+	font-size:28px;
+	font-weight:bold;
+}
